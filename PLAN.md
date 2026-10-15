@@ -1,4 +1,4 @@
-Current task: M6.
+Current task: M7.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -36,10 +36,10 @@ Current task: M6.
 - [x] Frontend checks and local UI integration; check and commit
 
 ## M6 Bank and tailor
-- [ ] Structured bank/versioning, selection/order/templates, diff accept/reject
-- [ ] Provenance gate, immutable metrics, layout budgets, gap report
-- [ ] Typst PDF/parse-back/preview/readiness; immutable used variants
-- [ ] No-provider tailor cache and safety/degradation tests; check and commit
+- [x] Structured bank/versioning, selection/order/templates, diff accept/reject
+- [x] Provenance gate, immutable metrics, layout budgets, gap report
+- [x] Typst PDF/parse-back/preview/readiness; immutable used variants
+- [x] No-provider tailor cache and safety/degradation tests; check and commit
 
 ## M7 LLM and chat
 - [ ] Local-first/provider fallback, central ledger, atomic run/day ceilings, response cache

@@ -188,3 +188,8 @@ def mount_frontend() -> None:
             if index.exists()
             else JSONResponse({"detail": "Run npm run build in frontend/"}, status_code=503)
         )
+
+
+from firstlook.api.tailor import router as tailor_router  # noqa: E402
+
+app.include_router(tailor_router)
