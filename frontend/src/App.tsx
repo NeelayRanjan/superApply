@@ -967,6 +967,12 @@ function Settings({
   onSaved: () => void;
 }) {
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [providerConfigured, setProviderConfigured] = useState(false);
+  useEffect(() => {
+    void api<{ provider_configured: boolean }>("/health").then((h) =>
+      setProviderConfigured(h.provider_configured),
+    );
+  }, []);
   useEffect(() => {
     void api<Profile>("/profile").then(setProfile);
   }, []);

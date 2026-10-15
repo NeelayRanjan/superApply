@@ -16,7 +16,7 @@ dependencies = [
 
 [project.optional-dependencies]
 model = ["onnxruntime==1.21.1", "tokenizers==0.21.1"]
-dev = ["pytest==8.3.5", "pytest-cov==6.1.1", "ruff==0.11.8", "mypy==1.15.0", "types-PyYAML==6.0.12.20250402", "hypothesis==6.131.9", "typst==0.13.2", "build==1.2.2.post1"]
+dev = ["pytest==8.3.5", "pytest-cov==6.1.1", "ruff==0.11.8", "mypy==1.15.0", "types-PyYAML==6.0.12.20250402", "hypothesis==6.131.9", "typst==0.13.2", "build==1.2.2.post1", "hatchling==1.27.0", "editables==0.5"]
 
 [project.scripts]
 firstlook = "firstlook.cli:app"

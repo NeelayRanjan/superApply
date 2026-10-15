@@ -4,8 +4,8 @@ VENV = .venv/bin
 setup:
 	$(PYTHON) -m venv .venv
 	$(VENV)/pip install -r requirements.lock
+	cd frontend && npm ci && npm run build
 	$(VENV)/pip install --no-deps --no-build-isolation -e .
-	cd frontend && npm ci
 check:
 	$(VENV)/ruff check backend tests scripts
 	$(VENV)/mypy backend

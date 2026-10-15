@@ -8,6 +8,7 @@ click==8.5.0
 cloudpickle==3.1.2
 coloredlogs==15.0.1
 coverage==7.16.2
+editables==0.5
 fastapi==0.115.12
 filelock==4.2.0
 flatbuffers==25.12.19
