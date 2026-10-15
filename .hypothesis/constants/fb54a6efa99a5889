@@ -1,0 +1,4 @@
+# file: /Users/diane/Documents/ChatGPT/neelay-superapply/superApply/backend/firstlook/ingest/http.py
+# hypothesis_version: 6.131.9
+
+[0.5, 200, 429, 500, '0', 'GET', 'If-Modified-Since', 'If-None-Match', 'Retry-After', 'User-Agent', 'body', 'etag', 'http:', 'last-modified', 'modified']

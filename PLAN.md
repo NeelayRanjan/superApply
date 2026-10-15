@@ -1,4 +1,4 @@
-Current task: M2.
+Current task: M3.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -12,11 +12,11 @@ Current task: M2.
 - [x] Fixture-only detection, seed validation tests; check and commit
 
 ## M2 Adapters and ingestion
-- [ ] Source protocol, Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, JSON-LD
-- [ ] Conditional HTTP, concurrency, delay floors, retry/backoff, robots
-- [ ] Staleness/hit scheduler, dedupe, immutable first seen, two-miss closure/reopen, ghost flags
-- [ ] Crawl history/counts/bytes, every adapter's status/empty/500/malformed cassettes
-- [ ] Offline adapter and ingestion acceptance/property tests; check and commit
+- [x] Source protocol, Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, JSON-LD
+- [x] Conditional HTTP, concurrency, delay floors, retry/backoff, robots
+- [x] Staleness/hit scheduler, dedupe, immutable first seen, two-miss closure/reopen, ghost flags
+- [x] Crawl history/counts/bytes, every adapter's status/empty/500/malformed cassettes
+- [x] Offline adapter and ingestion acceptance/property tests; check and commit
 
 ## M3 Extraction
 - [ ] Skills/aliases/negation, seniority/years/degree/compensation/remote/geo/visa/clearance/size

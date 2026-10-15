@@ -1,0 +1,4 @@
+# file: /Users/diane/Documents/ChatGPT/neelay-superapply/superApply/backend/firstlook/db.py
+# hypothesis_version: 6.131.9
+
+[':memory:', 'FIRSTLOOK_DB', 'PRAGMA user_version']
