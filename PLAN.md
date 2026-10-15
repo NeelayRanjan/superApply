@@ -1,4 +1,4 @@
-Current task: M7.
+Current task: M8.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -42,10 +42,10 @@ Current task: M7.
 - [x] No-provider tailor cache and safety/degradation tests; check and commit
 
 ## M7 LLM and chat
-- [ ] Local-first/provider fallback, central ledger, atomic run/day ceilings, response cache
-- [ ] Job-interest gate, estimate command and bulk >25 confirmation
-- [ ] Structured chat context, complete shared tool set, no-provider commands and visible note
-- [ ] Ledger/cache/budget/no-provider tests; check and commit
+- [x] Local-first/provider fallback, central ledger, atomic run/day ceilings, response cache
+- [x] Job-interest gate, estimate command and bulk >25 confirmation
+- [x] Structured chat context, complete shared tool set, no-provider commands and visible note
+- [x] Ledger/cache/budget/no-provider tests; check and commit
 
 ## M8 Tracker and assisted apply
 - [ ] States/events/notes/contacts/reminders and effort capture

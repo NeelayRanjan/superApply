@@ -146,3 +146,48 @@ def retrain() -> None:
 
     with connect() as db:
         typer.echo(train(db))
+
+
+@app.command("estimate")
+def estimate_command(command: str, count: int = 1) -> None:
+    from firstlook.llm import estimate
+
+    typer.echo(estimate(command, count))
+
+
+@app.command("tool")
+def tool_command(name: str, arguments: str = "{}", yes: bool = False) -> None:
+    import json
+
+    from firstlook.chat import tool
+    from firstlook.db import connect
+
+    args = json.loads(arguments)
+    batch = args if isinstance(args, list) else [args]
+    if len(batch) > 25 and not yes:
+        raise typer.BadParameter(
+            "Bulk operations over 25 jobs require --yes; inspect estimate first."
+        )
+    with connect() as db:
+        for item in batch:
+            typer.echo(json.dumps(tool(db, name, item), indent=2))
+
+
+@app.command("bank-save")
+def bank_save(file: str) -> None:
+    from pathlib import Path
+
+    from firstlook.bank import Entry, save
+    from firstlook.db import connect
+
+    with connect() as db:
+        typer.echo(save(db, Entry.model_validate_json(Path(file).read_text())))
+
+
+@app.command("render")
+def render_command(variant_id: int) -> None:
+    from firstlook.db import connect
+    from firstlook.tailor import render
+
+    with connect() as db:
+        typer.echo(render(db, variant_id))

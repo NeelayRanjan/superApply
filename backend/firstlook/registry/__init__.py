@@ -82,7 +82,7 @@ def companies(db: sqlite3.Connection) -> list[dict]:
     return result
 
 
-def discover(db: sqlite3.Connection, url: str, client: httpx.Client) -> Company:
+def discover(db: sqlite3.Connection, url: str, client) -> Company:
     allowed_url(url)
     response = client.get(url)
     response.raise_for_status()
@@ -114,7 +114,7 @@ def board_url(company: Company) -> str:
     }[company.platform]
 
 
-def verify(db: sqlite3.Connection, client: httpx.Client) -> list[dict]:
+def verify(db: sqlite3.Connection, client) -> list[dict]:
     outcomes = []
     for row in companies(db):
         company = Company.model_validate(row)

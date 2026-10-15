@@ -59,3 +59,37 @@ def pdf(variant_id: int):
         if not v["ready"] or not v["pdf_path"] or not Path(v["pdf_path"]).exists():
             raise ValueError("A verified PDF is not available")
         return FileResponse(v["pdf_path"], media_type="application/pdf")
+
+
+@router.post("/api/lines/{line_id}/ai-suggest")
+def ai_suggestion(line_id: int):
+    import json
+
+    from firstlook.llm import Client
+
+    with connect() as db:
+        line = db.execute("SELECT * FROM variant_line WHERE id=?", (line_id,)).fetchone()
+        if not line:
+            raise ValueError("Line not found")
+        variant = get(db, line["variant_id"])
+        if variant["used"]:
+            raise ValueError("Used variant is immutable")
+        job = db.execute(
+            "SELECT title,description FROM job WHERE id=?", (variant["job_id"],)
+        ).fetchone()
+        prompt = json.dumps(
+            {
+                "instruction": "Rephrase this bullet using only its source facts. Keep every number verbatim. Return the bullet only.",
+                "source": line["original"],
+                "job": dict(job),
+                "remaining_lines": variant["remaining_lines"],
+                "bank_version": variant["snapshot"],
+            }
+        )
+        result = Client(db).call("rephrase", variant["job_id"], prompt)
+        if result["text"]:
+            try:
+                return suggest(db, line_id, result["text"])
+            except ValueError as exc:
+                return dict(variant, note=f"Suggestion rejected by provenance/metrics gate: {exc}")
+        return dict(variant, note=result["note"])
