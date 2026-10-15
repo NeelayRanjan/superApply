@@ -1,0 +1,1028 @@
+[
+  {
+    "title": "Intern Engineer",
+    "description": "Required Python and SQL. 5+ years of experience. Salary $150,000 - $200,000 per year. Remote within United States. Visa sponsorship available.",
+    "expected": {
+      "skills": [
+        "Python",
+        "SQL"
+      ],
+      "years": 5,
+      "remote": "remote",
+      "visa": "yes",
+      "compensation": {
+        "min_cents": 15000000,
+        "max_cents": 20000000,
+        "currency": "USD",
+        "period": "year"
+      },
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "K8s and AWS required. Rust is nice to have. Hybrid in Boston. No visa sponsorship.",
+    "expected": {
+      "skills": [
+        "AWS",
+        "Kubernetes"
+      ],
+      "preferred_skills": [
+        "Rust"
+      ],
+      "remote": "hybrid",
+      "visa": "no",
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "TypeScript and React. On-site in London. GBP 70k\u201390k per year. Bachelor degree required.",
+    "expected": {
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "remote": "onsite",
+      "compensation": {
+        "min_cents": 7000000,
+        "max_cents": 9000000,
+        "currency": "GBP",
+        "period": "year"
+      },
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "C++ and Linux. Secret clearance required. $60 - $90 per hour.",
+    "expected": {
+      "skills": [
+        "C++",
+        "Linux"
+      ],
+      "clearance": true,
+      "compensation": {
+        "min_cents": 6000,
+        "max_cents": 9000,
+        "currency": "USD",
+        "period": "hour"
+      },
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "Python is not required. Golang preferred. Fully remote. No security clearance required.",
+    "expected": {
+      "skills": [],
+      "negated_skills": [
+        "Python"
+      ],
+      "preferred_skills": [
+        "Go"
+      ],
+      "clearance": false,
+      "remote": "remote",
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "Machine learning and PyTorch. 3-5 years of experience. EUR 80k to 100k.",
+    "expected": {
+      "skills": [
+        "Machine learning",
+        "PyTorch"
+      ],
+      "years": 3,
+      "compensation": {
+        "min_cents": 8000000,
+        "max_cents": 10000000,
+        "currency": "EUR",
+        "period": "year"
+      },
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "Figma and product design. Remote in Canada. CAD 100,000 - 140,000.",
+    "expected": {
+      "skills": [
+        "Figma",
+        "Product design"
+      ],
+      "remote": "remote",
+      "geography": "Canada",
+      "compensation": {
+        "min_cents": 10000000,
+        "max_cents": 14000000,
+        "currency": "CAD",
+        "period": "year"
+      },
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "SQL required. AWS optional. No remote work. Sponsorship unavailable.",
+    "expected": {
+      "skills": [
+        "SQL"
+      ],
+      "preferred_skills": [
+        "AWS"
+      ],
+      "remote": "onsite",
+      "visa": "no",
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "Docker and Terraform. 10 years experience. Team of 500 employees.",
+    "expected": {
+      "skills": [
+        "Docker",
+        "Terraform"
+      ],
+      "years": 10,
+      "size_cue": "500 employees",
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Intern Engineer",
+    "description": "NLP, LLMs and statistics. PhD preferred. $8k - $12k per month.",
+    "expected": {
+      "skills": [
+        "LLMs",
+        "NLP",
+        "Statistics"
+      ],
+      "compensation": {
+        "min_cents": 800000,
+        "max_cents": 1200000,
+        "currency": "USD",
+        "period": "month"
+      },
+      "seniority": "intern"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "Required Python and SQL. 5+ years of experience. Salary $150,000 - $200,000 per year. Remote within United States. Visa sponsorship available.",
+    "expected": {
+      "skills": [
+        "Python",
+        "SQL"
+      ],
+      "years": 5,
+      "remote": "remote",
+      "visa": "yes",
+      "compensation": {
+        "min_cents": 15000000,
+        "max_cents": 20000000,
+        "currency": "USD",
+        "period": "year"
+      },
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "K8s and AWS required. Rust is nice to have. Hybrid in Boston. No visa sponsorship.",
+    "expected": {
+      "skills": [
+        "AWS",
+        "Kubernetes"
+      ],
+      "preferred_skills": [
+        "Rust"
+      ],
+      "remote": "hybrid",
+      "visa": "no",
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "TypeScript and React. On-site in London. GBP 70k\u201390k per year. Bachelor degree required.",
+    "expected": {
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "remote": "onsite",
+      "compensation": {
+        "min_cents": 7000000,
+        "max_cents": 9000000,
+        "currency": "GBP",
+        "period": "year"
+      },
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "C++ and Linux. Secret clearance required. $60 - $90 per hour.",
+    "expected": {
+      "skills": [
+        "C++",
+        "Linux"
+      ],
+      "clearance": true,
+      "compensation": {
+        "min_cents": 6000,
+        "max_cents": 9000,
+        "currency": "USD",
+        "period": "hour"
+      },
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "Python is not required. Golang preferred. Fully remote. No security clearance required.",
+    "expected": {
+      "skills": [],
+      "negated_skills": [
+        "Python"
+      ],
+      "preferred_skills": [
+        "Go"
+      ],
+      "clearance": false,
+      "remote": "remote",
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "Machine learning and PyTorch. 3-5 years of experience. EUR 80k to 100k.",
+    "expected": {
+      "skills": [
+        "Machine learning",
+        "PyTorch"
+      ],
+      "years": 3,
+      "compensation": {
+        "min_cents": 8000000,
+        "max_cents": 10000000,
+        "currency": "EUR",
+        "period": "year"
+      },
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "Figma and product design. Remote in Canada. CAD 100,000 - 140,000.",
+    "expected": {
+      "skills": [
+        "Figma",
+        "Product design"
+      ],
+      "remote": "remote",
+      "geography": "Canada",
+      "compensation": {
+        "min_cents": 10000000,
+        "max_cents": 14000000,
+        "currency": "CAD",
+        "period": "year"
+      },
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "SQL required. AWS optional. No remote work. Sponsorship unavailable.",
+    "expected": {
+      "skills": [
+        "SQL"
+      ],
+      "preferred_skills": [
+        "AWS"
+      ],
+      "remote": "onsite",
+      "visa": "no",
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "Docker and Terraform. 10 years experience. Team of 500 employees.",
+    "expected": {
+      "skills": [
+        "Docker",
+        "Terraform"
+      ],
+      "years": 10,
+      "size_cue": "500 employees",
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Junior Developer",
+    "description": "NLP, LLMs and statistics. PhD preferred. $8k - $12k per month.",
+    "expected": {
+      "skills": [
+        "LLMs",
+        "NLP",
+        "Statistics"
+      ],
+      "compensation": {
+        "min_cents": 800000,
+        "max_cents": 1200000,
+        "currency": "USD",
+        "period": "month"
+      },
+      "seniority": "junior"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "Required Python and SQL. 5+ years of experience. Salary $150,000 - $200,000 per year. Remote within United States. Visa sponsorship available.",
+    "expected": {
+      "skills": [
+        "Python",
+        "SQL"
+      ],
+      "years": 5,
+      "remote": "remote",
+      "visa": "yes",
+      "compensation": {
+        "min_cents": 15000000,
+        "max_cents": 20000000,
+        "currency": "USD",
+        "period": "year"
+      },
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "K8s and AWS required. Rust is nice to have. Hybrid in Boston. No visa sponsorship.",
+    "expected": {
+      "skills": [
+        "AWS",
+        "Kubernetes"
+      ],
+      "preferred_skills": [
+        "Rust"
+      ],
+      "remote": "hybrid",
+      "visa": "no",
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "TypeScript and React. On-site in London. GBP 70k\u201390k per year. Bachelor degree required.",
+    "expected": {
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "remote": "onsite",
+      "compensation": {
+        "min_cents": 7000000,
+        "max_cents": 9000000,
+        "currency": "GBP",
+        "period": "year"
+      },
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "C++ and Linux. Secret clearance required. $60 - $90 per hour.",
+    "expected": {
+      "skills": [
+        "C++",
+        "Linux"
+      ],
+      "clearance": true,
+      "compensation": {
+        "min_cents": 6000,
+        "max_cents": 9000,
+        "currency": "USD",
+        "period": "hour"
+      },
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "Python is not required. Golang preferred. Fully remote. No security clearance required.",
+    "expected": {
+      "skills": [],
+      "negated_skills": [
+        "Python"
+      ],
+      "preferred_skills": [
+        "Go"
+      ],
+      "clearance": false,
+      "remote": "remote",
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "Machine learning and PyTorch. 3-5 years of experience. EUR 80k to 100k.",
+    "expected": {
+      "skills": [
+        "Machine learning",
+        "PyTorch"
+      ],
+      "years": 3,
+      "compensation": {
+        "min_cents": 8000000,
+        "max_cents": 10000000,
+        "currency": "EUR",
+        "period": "year"
+      },
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "Figma and product design. Remote in Canada. CAD 100,000 - 140,000.",
+    "expected": {
+      "skills": [
+        "Figma",
+        "Product design"
+      ],
+      "remote": "remote",
+      "geography": "Canada",
+      "compensation": {
+        "min_cents": 10000000,
+        "max_cents": 14000000,
+        "currency": "CAD",
+        "period": "year"
+      },
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "SQL required. AWS optional. No remote work. Sponsorship unavailable.",
+    "expected": {
+      "skills": [
+        "SQL"
+      ],
+      "preferred_skills": [
+        "AWS"
+      ],
+      "remote": "onsite",
+      "visa": "no",
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "Docker and Terraform. 10 years experience. Team of 500 employees.",
+    "expected": {
+      "skills": [
+        "Docker",
+        "Terraform"
+      ],
+      "years": 10,
+      "size_cue": "500 employees",
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Software Engineer",
+    "description": "NLP, LLMs and statistics. PhD preferred. $8k - $12k per month.",
+    "expected": {
+      "skills": [
+        "LLMs",
+        "NLP",
+        "Statistics"
+      ],
+      "compensation": {
+        "min_cents": 800000,
+        "max_cents": 1200000,
+        "currency": "USD",
+        "period": "month"
+      },
+      "seniority": "mid"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "Required Python and SQL. 5+ years of experience. Salary $150,000 - $200,000 per year. Remote within United States. Visa sponsorship available.",
+    "expected": {
+      "skills": [
+        "Python",
+        "SQL"
+      ],
+      "years": 5,
+      "remote": "remote",
+      "visa": "yes",
+      "compensation": {
+        "min_cents": 15000000,
+        "max_cents": 20000000,
+        "currency": "USD",
+        "period": "year"
+      },
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "K8s and AWS required. Rust is nice to have. Hybrid in Boston. No visa sponsorship.",
+    "expected": {
+      "skills": [
+        "AWS",
+        "Kubernetes"
+      ],
+      "preferred_skills": [
+        "Rust"
+      ],
+      "remote": "hybrid",
+      "visa": "no",
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "TypeScript and React. On-site in London. GBP 70k\u201390k per year. Bachelor degree required.",
+    "expected": {
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "remote": "onsite",
+      "compensation": {
+        "min_cents": 7000000,
+        "max_cents": 9000000,
+        "currency": "GBP",
+        "period": "year"
+      },
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "C++ and Linux. Secret clearance required. $60 - $90 per hour.",
+    "expected": {
+      "skills": [
+        "C++",
+        "Linux"
+      ],
+      "clearance": true,
+      "compensation": {
+        "min_cents": 6000,
+        "max_cents": 9000,
+        "currency": "USD",
+        "period": "hour"
+      },
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "Python is not required. Golang preferred. Fully remote. No security clearance required.",
+    "expected": {
+      "skills": [],
+      "negated_skills": [
+        "Python"
+      ],
+      "preferred_skills": [
+        "Go"
+      ],
+      "clearance": false,
+      "remote": "remote",
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "Machine learning and PyTorch. 3-5 years of experience. EUR 80k to 100k.",
+    "expected": {
+      "skills": [
+        "Machine learning",
+        "PyTorch"
+      ],
+      "years": 3,
+      "compensation": {
+        "min_cents": 8000000,
+        "max_cents": 10000000,
+        "currency": "EUR",
+        "period": "year"
+      },
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "Figma and product design. Remote in Canada. CAD 100,000 - 140,000.",
+    "expected": {
+      "skills": [
+        "Figma",
+        "Product design"
+      ],
+      "remote": "remote",
+      "geography": "Canada",
+      "compensation": {
+        "min_cents": 10000000,
+        "max_cents": 14000000,
+        "currency": "CAD",
+        "period": "year"
+      },
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "SQL required. AWS optional. No remote work. Sponsorship unavailable.",
+    "expected": {
+      "skills": [
+        "SQL"
+      ],
+      "preferred_skills": [
+        "AWS"
+      ],
+      "remote": "onsite",
+      "visa": "no",
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "Docker and Terraform. 10 years experience. Team of 500 employees.",
+    "expected": {
+      "skills": [
+        "Docker",
+        "Terraform"
+      ],
+      "years": 10,
+      "size_cue": "500 employees",
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Senior Engineer",
+    "description": "NLP, LLMs and statistics. PhD preferred. $8k - $12k per month.",
+    "expected": {
+      "skills": [
+        "LLMs",
+        "NLP",
+        "Statistics"
+      ],
+      "compensation": {
+        "min_cents": 800000,
+        "max_cents": 1200000,
+        "currency": "USD",
+        "period": "month"
+      },
+      "seniority": "senior"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "Required Python and SQL. 5+ years of experience. Salary $150,000 - $200,000 per year. Remote within United States. Visa sponsorship available.",
+    "expected": {
+      "skills": [
+        "Python",
+        "SQL"
+      ],
+      "years": 5,
+      "remote": "remote",
+      "visa": "yes",
+      "compensation": {
+        "min_cents": 15000000,
+        "max_cents": 20000000,
+        "currency": "USD",
+        "period": "year"
+      },
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "K8s and AWS required. Rust is nice to have. Hybrid in Boston. No visa sponsorship.",
+    "expected": {
+      "skills": [
+        "AWS",
+        "Kubernetes"
+      ],
+      "preferred_skills": [
+        "Rust"
+      ],
+      "remote": "hybrid",
+      "visa": "no",
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "TypeScript and React. On-site in London. GBP 70k\u201390k per year. Bachelor degree required.",
+    "expected": {
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "remote": "onsite",
+      "compensation": {
+        "min_cents": 7000000,
+        "max_cents": 9000000,
+        "currency": "GBP",
+        "period": "year"
+      },
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "C++ and Linux. Secret clearance required. $60 - $90 per hour.",
+    "expected": {
+      "skills": [
+        "C++",
+        "Linux"
+      ],
+      "clearance": true,
+      "compensation": {
+        "min_cents": 6000,
+        "max_cents": 9000,
+        "currency": "USD",
+        "period": "hour"
+      },
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "Python is not required. Golang preferred. Fully remote. No security clearance required.",
+    "expected": {
+      "skills": [],
+      "negated_skills": [
+        "Python"
+      ],
+      "preferred_skills": [
+        "Go"
+      ],
+      "clearance": false,
+      "remote": "remote",
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "Machine learning and PyTorch. 3-5 years of experience. EUR 80k to 100k.",
+    "expected": {
+      "skills": [
+        "Machine learning",
+        "PyTorch"
+      ],
+      "years": 3,
+      "compensation": {
+        "min_cents": 8000000,
+        "max_cents": 10000000,
+        "currency": "EUR",
+        "period": "year"
+      },
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "Figma and product design. Remote in Canada. CAD 100,000 - 140,000.",
+    "expected": {
+      "skills": [
+        "Figma",
+        "Product design"
+      ],
+      "remote": "remote",
+      "geography": "Canada",
+      "compensation": {
+        "min_cents": 10000000,
+        "max_cents": 14000000,
+        "currency": "CAD",
+        "period": "year"
+      },
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "SQL required. AWS optional. No remote work. Sponsorship unavailable.",
+    "expected": {
+      "skills": [
+        "SQL"
+      ],
+      "preferred_skills": [
+        "AWS"
+      ],
+      "remote": "onsite",
+      "visa": "no",
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "Docker and Terraform. 10 years experience. Team of 500 employees.",
+    "expected": {
+      "skills": [
+        "Docker",
+        "Terraform"
+      ],
+      "years": 10,
+      "size_cue": "500 employees",
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Staff Engineer",
+    "description": "NLP, LLMs and statistics. PhD preferred. $8k - $12k per month.",
+    "expected": {
+      "skills": [
+        "LLMs",
+        "NLP",
+        "Statistics"
+      ],
+      "compensation": {
+        "min_cents": 800000,
+        "max_cents": 1200000,
+        "currency": "USD",
+        "period": "month"
+      },
+      "seniority": "lead"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "Required Python and SQL. 5+ years of experience. Salary $150,000 - $200,000 per year. Remote within United States. Visa sponsorship available.",
+    "expected": {
+      "skills": [
+        "Python",
+        "SQL"
+      ],
+      "years": 5,
+      "remote": "remote",
+      "visa": "yes",
+      "compensation": {
+        "min_cents": 15000000,
+        "max_cents": 20000000,
+        "currency": "USD",
+        "period": "year"
+      },
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "K8s and AWS required. Rust is nice to have. Hybrid in Boston. No visa sponsorship.",
+    "expected": {
+      "skills": [
+        "AWS",
+        "Kubernetes"
+      ],
+      "preferred_skills": [
+        "Rust"
+      ],
+      "remote": "hybrid",
+      "visa": "no",
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "TypeScript and React. On-site in London. GBP 70k\u201390k per year. Bachelor degree required.",
+    "expected": {
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "remote": "onsite",
+      "compensation": {
+        "min_cents": 7000000,
+        "max_cents": 9000000,
+        "currency": "GBP",
+        "period": "year"
+      },
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "C++ and Linux. Secret clearance required. $60 - $90 per hour.",
+    "expected": {
+      "skills": [
+        "C++",
+        "Linux"
+      ],
+      "clearance": true,
+      "compensation": {
+        "min_cents": 6000,
+        "max_cents": 9000,
+        "currency": "USD",
+        "period": "hour"
+      },
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "Python is not required. Golang preferred. Fully remote. No security clearance required.",
+    "expected": {
+      "skills": [],
+      "negated_skills": [
+        "Python"
+      ],
+      "preferred_skills": [
+        "Go"
+      ],
+      "clearance": false,
+      "remote": "remote",
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "Machine learning and PyTorch. 3-5 years of experience. EUR 80k to 100k.",
+    "expected": {
+      "skills": [
+        "Machine learning",
+        "PyTorch"
+      ],
+      "years": 3,
+      "compensation": {
+        "min_cents": 8000000,
+        "max_cents": 10000000,
+        "currency": "EUR",
+        "period": "year"
+      },
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "Figma and product design. Remote in Canada. CAD 100,000 - 140,000.",
+    "expected": {
+      "skills": [
+        "Figma",
+        "Product design"
+      ],
+      "remote": "remote",
+      "geography": "Canada",
+      "compensation": {
+        "min_cents": 10000000,
+        "max_cents": 14000000,
+        "currency": "CAD",
+        "period": "year"
+      },
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "SQL required. AWS optional. No remote work. Sponsorship unavailable.",
+    "expected": {
+      "skills": [
+        "SQL"
+      ],
+      "preferred_skills": [
+        "AWS"
+      ],
+      "remote": "onsite",
+      "visa": "no",
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "Docker and Terraform. 10 years experience. Team of 500 employees.",
+    "expected": {
+      "skills": [
+        "Docker",
+        "Terraform"
+      ],
+      "years": 10,
+      "size_cue": "500 employees",
+      "seniority": "executive"
+    }
+  },
+  {
+    "title": "Director of Engineering",
+    "description": "NLP, LLMs and statistics. PhD preferred. $8k - $12k per month.",
+    "expected": {
+      "skills": [
+        "LLMs",
+        "NLP",
+        "Statistics"
+      ],
+      "compensation": {
+        "min_cents": 800000,
+        "max_cents": 1200000,
+        "currency": "USD",
+        "period": "month"
+      },
+      "seniority": "executive"
+    }
+  }
+]

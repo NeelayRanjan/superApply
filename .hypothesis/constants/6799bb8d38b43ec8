@@ -1,4 +1,0 @@
-# file: /Users/diane/Documents/ChatGPT/neelay-superapply/superApply/backend/firstlook/registry/__init__.py
-# hypothesis_version: 6.131.9
-
-['-', '.', 'JobPosting', '\\W+', 'ashby', 'glassdoor.com', 'greenhouse', 'https', 'id', 'indeed.com', 'jsonld', 'lever', 'linkedin.com', 'message', 'recruitee', 'registry.seed.jsonl', 'smartrecruiters', 'tags', 'verified', 'workable']

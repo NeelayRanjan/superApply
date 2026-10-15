@@ -1,4 +1,0 @@
-# file: /Users/diane/Documents/ChatGPT/neelay-superapply/superApply/backend/firstlook/adapters/smartrecruiters.py
-# hypothesis_version: 6.131.9
-
-[304, ', ', '/', 'applyUrl', 'city', 'compensation', 'content', 'country', 'department', 'id', 'jobAd', 'label', 'location', 'name', 'region', 'releasedDate', 'remote', 'sections', 'text', 'totalFound', 'typeOfEmployment']

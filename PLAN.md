@@ -1,4 +1,4 @@
-Current task: M3.
+Current task: M4.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -19,9 +19,9 @@ Current task: M3.
 - [x] Offline adapter and ingestion acceptance/property tests; check and commit
 
 ## M3 Extraction
-- [ ] Skills/aliases/negation, seniority/years/degree/compensation/remote/geo/visa/clearance/size
-- [ ] Category rules and editable company tags that survive recrawl
-- [ ] 60+ labelled golden fixtures and category accuracy tests; check and commit
+- [x] Skills/aliases/negation, seniority/years/degree/compensation/remote/geo/visa/clearance/size
+- [x] Category rules and editable company tags that survive recrawl
+- [x] 60+ labelled golden fixtures and category accuracy tests; check and commit
 
 ## M4 Matching
 - [ ] Profile prerequisites, hard filters, overlap/cosine scores, bands and explanations

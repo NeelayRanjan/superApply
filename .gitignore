@@ -19,3 +19,5 @@ models/
 .firstlook/
 playwright-report/
 test-results/
+
+.hypothesis/

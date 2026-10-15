@@ -1,0 +1,7 @@
+startup: [startup, seed stage, series a, series b, venture-backed]
+B2B: [b2b, business customers, business-to-business]
+SaaS: [saas, software as a service, subscription software]
+enterprise: [enterprise, fortune 500]
+agency: [agency, consulting services]
+non-profit: [non-profit, nonprofit, charitable]
+public sector: [government, public sector, municipal]

@@ -1,4 +1,0 @@
-# file: /Users/diane/Documents/ChatGPT/neelay-superapply/superApply/backend/firstlook/paths.py
-# hypothesis_version: 6.131.9
-
-['FIRSTLOOK_ROOT', 'data', 'fixtures']

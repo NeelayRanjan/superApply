@@ -1,4 +1,0 @@
-# file: /Users/diane/Documents/ChatGPT/neelay-superapply/superApply/backend/firstlook/adapters/ashby.py
-# hypothesis_version: 6.131.9
-
-['applyUrl', 'compensation', 'department', 'descriptionHtml', 'descriptionPlain', 'employmentType', 'id', 'isRemote', 'jobs', 'location', 'publishedAt', 'secondaryLocations', 'title']
