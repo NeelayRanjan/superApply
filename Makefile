@@ -9,8 +9,8 @@ setup:
 check:
 	$(VENV)/ruff check backend tests scripts
 	$(VENV)/mypy backend
-	$(VENV)/pytest
 	cd frontend && npm run typecheck && npm run lint && npm run build
+	$(VENV)/pytest
 test:
 	$(VENV)/pytest
 run:

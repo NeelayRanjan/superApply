@@ -1,4 +1,4 @@
-Current task: M5.
+Current task: M6.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -30,10 +30,10 @@ Current task: M5.
 - [x] Determinism, absent model, 1000-company/job zero-LLM tests; check and commit
 
 ## M5 UI shell
-- [ ] Three-region shell, jobs/detail, visible requirements/explanations/flags/gaps
-- [ ] Filters, saved searches, keyboard j/k/s/t/a/search, dark mode
-- [ ] Virtualised 20000-row table and all panels on fixture data
-- [ ] Frontend checks and local UI integration; check and commit
+- [x] Three-region shell, jobs/detail, visible requirements/explanations/flags/gaps
+- [x] Filters, saved searches, keyboard j/k/s/t/a/search, dark mode
+- [x] Virtualised 20000-row table and all panels on fixture data
+- [x] Frontend checks and local UI integration; check and commit
 
 ## M6 Bank and tailor
 - [ ] Structured bank/versioning, selection/order/templates, diff accept/reject

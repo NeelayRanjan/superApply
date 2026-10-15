@@ -7,7 +7,11 @@ app = typer.Typer(help="firstlook: your local job search workbench")
 def serve() -> None:
     import uvicorn
 
-    uvicorn.run("firstlook.api:app", host="127.0.0.1", port=8765)
+    from firstlook.api import app as api_app
+    from firstlook.api import mount_frontend
+
+    mount_frontend()
+    uvicorn.run(api_app, host="127.0.0.1", port=8765)
 
 
 @app.command()
