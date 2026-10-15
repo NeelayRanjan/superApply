@@ -46,6 +46,7 @@ class Encoder:
                 import onnxruntime as ort
                 from tokenizers import Tokenizer
 
+                ort.disable_telemetry_events()
                 self.session = ort.InferenceSession(str(path), providers=["CPUExecutionProvider"])
                 self.tokenizer = Tokenizer.from_file(str(path.with_name("tokenizer.json")))
                 self.tokenizer.enable_truncation(max_length=256)

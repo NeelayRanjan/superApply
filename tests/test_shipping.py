@@ -110,3 +110,32 @@ def test_complete_ui_api_workflow_without_provider(tmp_path, monkeypatch):
     assert client.get("/api/analytics").json()["overall"]["applications"] == 1
     assert client.get("/api/budget").json() == []
     assert client.post("/api/applications/confirm", json={"confirmed": False}).status_code == 400
+
+
+def test_onnx_encoder_masks_pools_normalizes_and_disables_telemetry(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    import numpy as np
+    import onnxruntime
+    from firstlook.embed import Encoder
+    from tokenizers import Tokenizer, models
+
+    path = tmp_path / "minilm.onnx"
+    path.write_bytes(b"local fixture, not model weights")
+    tokenizer = Tokenizer(models.WordLevel({"[UNK]": 0, "hello": 1}, unk_token="[UNK]"))
+    tokenizer.save(str(tmp_path / "tokenizer.json"))
+    disabled = []
+
+    class Session:
+        def get_inputs(self):
+            return [SimpleNamespace(name="input_ids"), SimpleNamespace(name="attention_mask")]
+
+        def run(self, outputs, feed):
+            return [np.ones((1, feed["input_ids"].shape[1], 384))]
+
+    monkeypatch.setattr(onnxruntime, "disable_telemetry_events", lambda: disabled.append(True))
+    monkeypatch.setattr(onnxruntime, "InferenceSession", lambda *a, **kw: Session())
+    encoder = Encoder(path)
+    vector = encoder.encode("hello")
+    assert disabled == [True] and len(vector) == 384
+    assert np.linalg.norm(vector) == pytest.approx(1)
