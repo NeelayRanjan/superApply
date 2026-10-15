@@ -54,7 +54,7 @@ def tool(db: sqlite3.Connection, name: str, args: dict) -> object:
         db.commit()
         return {"saved": True}
     if name in ("queue_apply", "track"):
-        from firstlook.track import queue, transition  # type: ignore[attr-defined]
+        from firstlook.track import queue, transition
 
         return (
             queue(db, args["id"], args.get("variant_id"))
@@ -62,7 +62,7 @@ def tool(db: sqlite3.Connection, name: str, args: dict) -> object:
             else transition(db, args["id"], args["state"], args.get("notes", ""))
         )
     if name == "analytics":
-        from firstlook.analytics import report  # type: ignore[attr-defined]
+        from firstlook.analytics import report
 
         return report(db)
     if name == "registry_add":

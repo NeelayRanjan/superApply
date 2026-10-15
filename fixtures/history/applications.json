@@ -1,0 +1,842 @@
+[
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "A",
+    "response": true,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": 7
+  },
+  {
+    "variant": "A",
+    "response": false,
+    "minutes": 10,
+    "delay_days": 1,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": true,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": 7
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  },
+  {
+    "variant": "B",
+    "response": false,
+    "minutes": 20,
+    "delay_days": 5,
+    "response_days": null
+  }
+]

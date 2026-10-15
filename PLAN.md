@@ -1,4 +1,4 @@
-Current task: M9.
+Current task: M10.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -54,9 +54,9 @@ Current task: M9.
 - [x] Saved Greenhouse/Lever/Ashby forms, browser and missing-browser tests; check and commit
 
 ## M9 Analytics
-- [ ] Segment/variant/lead-time rates and Wilson intervals; minimum sample gate
-- [ ] Effort return, Kaplan-Meier curve, reminders, CSV export and UI
-- [ ] Deterministic history and hand/reference calculations, zero-LLM tests; check and commit
+- [x] Segment/variant/lead-time rates and Wilson intervals; minimum sample gate
+- [x] Effort return, Kaplan-Meier curve, reminders, CSV export and UI
+- [x] Deterministic history and hand/reference calculations, zero-LLM tests; check and commit
 
 ## M10 Ship
 - [ ] Complete RUNBOOK/COST/README/assumptions/review registry
