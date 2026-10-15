@@ -34,7 +34,18 @@ async def value_error(request: Request, exc: ValueError):
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok", "version": "0.1.0", "matching": Encoder().note}
+    return {
+        "status": "ok",
+        "version": "0.1.0",
+        "matching": Encoder().note,
+        "provider_configured": bool(
+            os.environ.get("FIRSTLOOK_LOCAL_URL")
+            or all(
+                os.environ.get(key)
+                for key in ("FIRSTLOOK_API_KEY", "FIRSTLOOK_PROVIDER_URL", "FIRSTLOOK_MODEL")
+            )
+        ),
+    }
 
 
 @app.get("/api/jobs")

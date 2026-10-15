@@ -1122,8 +1122,9 @@ function Settings({
           variables, never in your database.
         </p>
         <p className="info-note">
-          No LLM provider configured: the deterministic tailor and local chat
-          tools remain available.
+          {providerConfigured
+            ? "Provider configured. AI calls are limited to selected jobs and enforced budgets."
+            : "No LLM provider configured: the deterministic tailor and local chat tools remain available."}
         </p>
         <BudgetSettings notify={notify} />
       </section>
