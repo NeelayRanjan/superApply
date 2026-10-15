@@ -23,9 +23,9 @@ def save_bank(entry: Entry):
 
 
 @router.post("/api/tailor/{job_id}")
-def tailor(job_id: int):
+def tailor(job_id: int, data: dict | None = None):
     with connect() as db:
-        return create(db, job_id)
+        return create(db, job_id, (data or {}).get("template", "classic"))
 
 
 @router.get("/api/variants/{variant_id}")
@@ -104,3 +104,30 @@ def variants():
                 "SELECT id,job_id,ready,used,created_at FROM resume_variant ORDER BY id DESC"
             )
         ]
+
+
+@router.post("/api/variants/{variant_id}/layout")
+def edit_layout(variant_id: int, data: dict):
+    from firstlook.tailor import layout
+
+    with connect() as db:
+        return layout(db, variant_id, data["selection"])
+
+
+@router.get("/api/jobs/{job_id}/gap")
+def job_gap(job_id: int):
+    import json
+
+    with connect() as db:
+        variant = db.execute(
+            "SELECT id FROM resume_variant WHERE job_id=? ORDER BY id DESC LIMIT 1", (job_id,)
+        ).fetchone()
+        if variant:
+            return get(db, variant[0])["gap"]
+        extracted = db.execute("SELECT data FROM job_extract WHERE job_id=?", (job_id,)).fetchone()
+        skills = json.loads(extracted[0]).get("skills", []) if extracted else []
+        bank_text = json.dumps(entries(db)).lower()
+        return {
+            "not_surfaced": [s for s in skills if s.lower() in bank_text],
+            "not_in_bank": [s for s in skills if s.lower() not in bank_text],
+        }

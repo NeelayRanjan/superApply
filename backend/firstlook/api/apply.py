@@ -23,7 +23,7 @@ def queue_application(data: dict):
 def update(application_id: int, data: dict):
     with connect() as db:
         return transition(
-            db, application_id, data["state"], data.get("notes", ""), data.get("contacts", "")
+            db, application_id, data["state"], data.get("notes"), data.get("contacts")
         )
 
 
@@ -70,3 +70,18 @@ def confirm(data: dict):
             )
 
     return EXECUTOR.submit(run).result()
+
+
+@router.put("/api/applications/{application_id}/metadata")
+def metadata(application_id: int, data: dict):
+    minutes = float(data.get("minutes", 0))
+    if minutes < 0 or minutes > 100000:
+        raise ValueError("Effort minutes must be between 0 and 100000")
+    with connect() as db:
+        if not db.execute("SELECT id FROM application WHERE id=?", (application_id,)).fetchone():
+            raise ValueError("Application not found")
+        db.execute(
+            "UPDATE application SET minutes=?,referral=? WHERE id=?",
+            (minutes, int(bool(data.get("referral", False))), application_id),
+        )
+    return {"saved": True}

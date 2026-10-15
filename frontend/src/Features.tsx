@@ -1,23 +1,537 @@
-import { useEffect, useState } from 'react';
-import { Check, FileText, Plus, Sparkles, X } from 'lucide-react';
-import { Empty, PageHeading } from './App';
-import { api, type Job } from './api';
-import Pipeline from './Pipeline';
-import Analytics from './Analytics';
-type Entry={id:string;kind:string;title:string;organisation:string;dates:string;bullets:string[];metrics:Record<string,string>;tags:string[];weight:number};
-type Line={id:number;bank_entry_id:string;text:string;original:string;suggestion:string|null;status:string};
-type Variant={id:number;lines:Line[];ready:number;used:number;remaining_lines:number;overflow:boolean;note:string;pdf_path:string|null;gap:{not_surfaced:string[];not_in_bank:string[]}};
-export function FeatureSlot({name,job,notify}:{name:string;job:Job|null;notify:(s:string)=>void}){if(name==='Analytics')return <Analytics notify={notify}/>;if(name==='Pipeline')return <Pipeline job={job} notify={notify}/>;if(name==='Bank')return <Bank notify={notify}/>;if(name==='Tailor')return <Tailor job={job} notify={notify}/>;return <><PageHeading title={name} subtitle={job?`${job.title} · ${job.company}`:'Your search, thoughtfully organized.'}/><Empty icon={<FileText size={28}/>} title={`Your ${name.toLowerCase()} starts here`} text="Your workspace is ready for the next step."/></>;}
-function Bank({notify}:{notify:(s:string)=>void}){
- const blank:Entry={id:'',kind:'role',title:'',organisation:'',dates:'',bullets:[],metrics:{},tags:[],weight:1};const [rows,setRows]=useState<Entry[]>([]);const [entry,setEntry]=useState<Entry>(blank);const [metrics,setMetrics]=useState('{}');const [editing,setEditing]=useState(false);
- const load=()=>api<Entry[]>('/bank').then(setRows);useEffect(()=>{void load();},[]);
- const save=async()=>{try{const data={...entry,id:entry.id||crypto.randomUUID(),metrics:JSON.parse(metrics)};await api('/bank','PUT',data);await load();setEditing(false);notify('Experience saved. Your metrics are locked to this source.');}catch(e){notify(String(e));}};
- return <><PageHeading title="Your experience bank" subtitle="The things you actually did. The foundation of every resume."/><button className="primary" onClick={()=>{setEntry(blank);setMetrics('{}');setEditing(true);}}><Plus size={15}/>Add experience</button><p className="info-note">Start with an identity entry: your full name as the title, email and phone as organisation, and location or links as bullets. Add roles, projects, education, and skills in your own words.</p>{editing&&<form className="settings-form" onSubmit={e=>{e.preventDefault();void save();}}><div className="form-grid"><label>Entry type<select value={entry.kind} onChange={e=>setEntry({...entry,kind:e.target.value})}>{['identity','role','project','publication','education','skill'].map(k=><option key={k}>{k}</option>)}</select></label><label>Title / your name<input required value={entry.title} onChange={e=>setEntry({...entry,title:e.target.value})}/></label></div><label>Organisation / contact details<input value={entry.organisation} onChange={e=>setEntry({...entry,organisation:e.target.value})}/></label><label>Date range<input placeholder="2022 – 2025" value={entry.dates} onChange={e=>setEntry({...entry,dates:e.target.value})}/></label><label>Bullets · one per line<textarea rows={5} value={entry.bullets.join('\n')} onChange={e=>setEntry({...entry,bullets:e.target.value.split('\n')})}/></label><label>Locked metrics (JSON)<textarea value={metrics} onChange={e=>setMetrics(e.target.value)}/><small>Example: {'{"latency":"35%"}'}. Use {'{latency}'} in a bullet. Existing metrics cannot change.</small></label><label>Tags<input value={entry.tags.join(', ')} onChange={e=>setEntry({...entry,tags:e.target.value.split(',').map(s=>s.trimStart())})}/></label><div className="button-row"><button type="submit" className="primary">Save entry<Check size={15}/></button><button type="button" className="secondary" onClick={()=>setEditing(false)}>Cancel</button></div></form>}{rows.map(e=><article className="experience-card" key={e.id}><div><span className="eyebrow">{e.kind} · {e.dates}</span><h3>{e.title}</h3><p className="muted">{e.organisation}</p></div><ul>{e.bullets.map((b,i)=><li key={i}>{b}</li>)}</ul><div className="button-row"><span className="chip">Source: {e.id.slice(0,15)}</span><button className="text-button" onClick={()=>{setEntry(e);setMetrics(JSON.stringify(e.metrics));setEditing(true);}}>Edit source</button></div></article>)}{!rows.length&&!editing&&<Empty icon={<FileText size={28}/>} title="Every good application starts with your story" text="Add your real experience once. Surface the right parts for each opportunity."/>}</>;
+import { useEffect, useState } from "react";
+import { Check, FileText, Plus, Sparkles, X } from "lucide-react";
+import { Empty, PageHeading } from "./App";
+import { api, type Job } from "./api";
+import Pipeline from "./Pipeline";
+import Analytics from "./Analytics";
+type Entry = {
+  id: string;
+  kind: string;
+  title: string;
+  organisation: string;
+  dates: string;
+  bullets: string[];
+  metrics: Record<string, string>;
+  tags: string[];
+  weight: number;
+};
+type Line = {
+  source_index: number;
+  id: number;
+  bank_entry_id: string;
+  text: string;
+  original: string;
+  suggestion: string | null;
+  status: string;
+};
+type Variant = {
+  id: number;
+  lines: Line[];
+  ready: number;
+  used: number;
+  remaining_lines: number;
+  overflow: boolean;
+  note: string;
+  pdf_path: string | null;
+  gap: { not_surfaced: string[]; not_in_bank: string[] };
+};
+export function FeatureSlot({
+  name,
+  job,
+  notify,
+}: {
+  name: string;
+  job: Job | null;
+  notify: (s: string) => void;
+}) {
+  if (name === "Analytics") return <Analytics notify={notify} />;
+  if (name === "Pipeline") return <Pipeline job={job} notify={notify} />;
+  if (name === "Bank") return <Bank notify={notify} />;
+  if (name === "Tailor") return <Tailor job={job} notify={notify} />;
+  return (
+    <>
+      <PageHeading
+        title={name}
+        subtitle={
+          job
+            ? `${job.title} · ${job.company}`
+            : "Your search, thoughtfully organized."
+        }
+      />
+      <Empty
+        icon={<FileText size={28} />}
+        title={`Your ${name.toLowerCase()} starts here`}
+        text="Your workspace is ready for the next step."
+      />
+    </>
+  );
 }
-function Tailor({job,notify}:{job:Job|null;notify:(s:string)=>void}){
- const [jobs,setJobs]=useState<Job[]>([]);const [jobId,setJobId]=useState(job?.id||0);const [variant,setVariant]=useState<Variant|null>(null);const [bank,setBank]=useState<Entry[]>([]);
- useEffect(()=>{void api<Job[]>('/jobs').then(setJobs);void api<Entry[]>('/bank').then(setBank);},[]);
- const create=async()=>{try{setVariant(await api<Variant>('/tailor/'+jobId,'POST'));}catch(e){notify(String(e));}};
- const action=async(path:string,data?:unknown)=>{try{setVariant(await api<Variant>(path,'POST',data));}catch(e){notify(String(e));}};
- return <><PageHeading title="Make your experience count" subtitle="A tailored resume, with a source behind every line."/><div className="button-row"><select aria-label="Job to tailor" value={jobId} onChange={e=>setJobId(Number(e.target.value))}><option value={0}>Choose an opportunity</option>{jobs.map(j=><option key={j.id} value={j.id}>{j.title} · {j.company}</option>)}</select><button className="primary" disabled={!jobId} onClick={()=>void create()}><Sparkles size={15}/>Build variant · free</button></div>{variant?<><div className="notice">{variant.note} <span>{variant.remaining_lines} lines remaining</span></div><div className="tailor-grid"><section><h3>Source bank</h3>{bank.map(e=><article className="experience-card" key={e.id}><small>{e.kind} · {e.id.slice(0,12)}</small><h3>{e.title}</h3><ul>{e.bullets.map((b,i)=><li key={i}>{b}</li>)}</ul></article>)}</section><section><h3>Variant #{variant.id} {variant.used?'· locked':''}</h3>{variant.lines.map(line=><article className="line-card" key={line.id}><small>Source {line.bank_entry_id} · {line.status}</small><p>{line.text}</p>{line.suggestion!==null?<><del>{line.text}</del><ins>{line.suggestion}</ins><div className="button-row"><button className="secondary" onClick={()=>void action('/lines/'+line.id+'/decide',{accept:true})}><Check size={13}/>Accept</button><button className="secondary" onClick={()=>void action('/lines/'+line.id+'/decide',{accept:false})}><X size={13}/>Reject</button></div></>:<form onSubmit={e=>{e.preventDefault();const text=new FormData(e.currentTarget).get('text');void action('/lines/'+line.id+'/suggest',{text});}}><textarea aria-label={'Rephrase source '+line.bank_entry_id} name="text" defaultValue={line.text} disabled={Boolean(variant.used)}/><button className="text-button" disabled={Boolean(variant.used)}>Preview edit</button><button type="button" className="text-button" disabled={Boolean(variant.used)} onClick={()=>void action('/lines/'+line.id+'/ai-suggest')}>Suggest with AI · budget enforced</button></form>}</article>)}</section></div><div className="gap-grid"><div><h3>In your bank, not surfaced</h3><p>{variant.gap.not_surfaced.join(', ')||'No unsurfaced requirements detected.'}</p></div><div><h3>Not covered by your bank</h3><p>{variant.gap.not_in_bank.join(', ')||'No uncovered requirements detected.'}</p></div></div><button className="primary" onClick={()=>void action('/variants/'+variant.id+'/render')} disabled={variant.overflow}>Render & verify PDF</button>{variant.ready?<><p className="info-note">Parse-back passed. Ready for application review.</p><iframe title="Resume PDF preview" className="pdf-preview" src={'/api/variants/'+variant.id+'/pdf'}/><a className="text-button" href={'/api/variants/'+variant.id+'/pdf'} target="_blank" rel="noreferrer">Open verified PDF</a></>:<p className="muted">{variant.note}</p>}</>:<Empty icon={<Sparkles size={28}/>} title="The right experience for this opportunity" text="Choose a job and build a variant. Review every change before it becomes part of your resume."/>}</>;
+function Bank({ notify }: { notify: (s: string) => void }) {
+  const blank: Entry = {
+    id: "",
+    kind: "role",
+    title: "",
+    organisation: "",
+    dates: "",
+    bullets: [],
+    metrics: {},
+    tags: [],
+    weight: 1,
+  };
+  const [rows, setRows] = useState<Entry[]>([]);
+  const [entry, setEntry] = useState<Entry>(blank);
+  const [metrics, setMetrics] = useState("{}");
+  const [editing, setEditing] = useState(false);
+  const load = () => api<Entry[]>("/bank").then(setRows);
+  useEffect(() => {
+    void load();
+  }, []);
+  const save = async () => {
+    try {
+      const data = {
+        ...entry,
+        id: entry.id || crypto.randomUUID(),
+        metrics: JSON.parse(metrics),
+      };
+      await api("/bank", "PUT", data);
+      await load();
+      setEditing(false);
+      notify("Experience saved. Your metrics are locked to this source.");
+    } catch (e) {
+      notify(String(e));
+    }
+  };
+  return (
+    <>
+      <PageHeading
+        title="Your experience bank"
+        subtitle="The things you actually did. The foundation of every resume."
+      />
+      <button
+        className="primary"
+        onClick={() => {
+          setEntry(blank);
+          setMetrics("{}");
+          setEditing(true);
+        }}
+      >
+        <Plus size={15} />
+        Add experience
+      </button>
+      <p className="info-note">
+        Start with an identity entry: your full name as the title, email and
+        phone as organisation, and location or links as bullets. Add roles,
+        projects, education, and skills in your own words.
+      </p>
+      {editing && (
+        <form
+          className="settings-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void save();
+          }}
+        >
+          <div className="form-grid">
+            <label>
+              Entry type
+              <select
+                value={entry.kind}
+                onChange={(e) => setEntry({ ...entry, kind: e.target.value })}
+              >
+                {[
+                  "identity",
+                  "role",
+                  "project",
+                  "publication",
+                  "education",
+                  "skill",
+                ].map((k) => (
+                  <option key={k}>{k}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Title / your name
+              <input
+                required
+                value={entry.title}
+                onChange={(e) => setEntry({ ...entry, title: e.target.value })}
+              />
+            </label>
+          </div>
+          <label>
+            Organisation / contact details
+            <input
+              value={entry.organisation}
+              onChange={(e) =>
+                setEntry({ ...entry, organisation: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Date range
+            <input
+              placeholder="2022 – 2025"
+              value={entry.dates}
+              onChange={(e) => setEntry({ ...entry, dates: e.target.value })}
+            />
+          </label>
+          <label>
+            Bullets · one per line
+            <textarea
+              rows={5}
+              value={entry.bullets.join("\n")}
+              onChange={(e) =>
+                setEntry({ ...entry, bullets: e.target.value.split("\n") })
+              }
+            />
+          </label>
+          <label>
+            Locked metrics (JSON)
+            <textarea
+              value={metrics}
+              onChange={(e) => setMetrics(e.target.value)}
+            />
+            <small>
+              Example: {'{"latency":"35%"}'}. Use {"{latency}"} in a bullet.
+              Existing metrics cannot change.
+            </small>
+          </label>
+          <label>
+            Tags
+            <input
+              value={entry.tags.join(", ")}
+              onChange={(e) =>
+                setEntry({
+                  ...entry,
+                  tags: e.target.value.split(",").map((s) => s.trimStart()),
+                })
+              }
+            />
+          </label>
+          <div className="button-row">
+            <button type="submit" className="primary">
+              Save entry
+              <Check size={15} />
+            </button>
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => setEditing(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
+      {rows.map((e) => (
+        <article className="experience-card" key={e.id}>
+          <div>
+            <span className="eyebrow">
+              {e.kind} · {e.dates}
+            </span>
+            <h3>{e.title}</h3>
+            <p className="muted">{e.organisation}</p>
+          </div>
+          <ul>
+            {e.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+          <div className="button-row">
+            <span className="chip">Source: {e.id.slice(0, 15)}</span>
+            <button
+              className="text-button"
+              onClick={() => {
+                setEntry(e);
+                setMetrics(JSON.stringify(e.metrics));
+                setEditing(true);
+              }}
+            >
+              Edit source
+            </button>
+          </div>
+        </article>
+      ))}
+      {!rows.length && !editing && (
+        <Empty
+          icon={<FileText size={28} />}
+          title="Every good application starts with your story"
+          text="Add your real experience once. Surface the right parts for each opportunity."
+        />
+      )}
+    </>
+  );
+}
+function Tailor({
+  job,
+  notify,
+}: {
+  job: Job | null;
+  notify: (s: string) => void;
+}) {
+  const [template, setTemplate] = useState("classic");
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [jobId, setJobId] = useState(job?.id || 0);
+  const [variant, setVariant] = useState<Variant | null>(null);
+  const [bank, setBank] = useState<Entry[]>([]);
+  useEffect(() => {
+    void api<Job[]>("/jobs").then(setJobs);
+    void api<Entry[]>("/bank").then(setBank);
+  }, []);
+  const create = async () => {
+    try {
+      setVariant(await api<Variant>("/tailor/" + jobId, "POST", { template }));
+    } catch (e) {
+      notify(String(e));
+    }
+  };
+  const action = async (path: string, data?: unknown) => {
+    try {
+      setVariant(await api<Variant>(path, "POST", data));
+    } catch (e) {
+      notify(String(e));
+    }
+  };
+  return (
+    <>
+      <PageHeading
+        title="Make your experience count"
+        subtitle="A tailored resume, with a source behind every line."
+      />
+      <div className="button-row">
+        <select
+          aria-label="Job to tailor"
+          value={jobId}
+          onChange={(e) => setJobId(Number(e.target.value))}
+        >
+          <option value={0}>Choose an opportunity</option>
+          {jobs.map((j) => (
+            <option key={j.id} value={j.id}>
+              {j.title} · {j.company}
+            </option>
+          ))}
+        </select>
+        <select
+          aria-label="Resume template"
+          value={template}
+          onChange={(e) => setTemplate(e.target.value)}
+        >
+          <option value="classic">Classic</option>
+          <option value="compact">Compact</option>
+        </select>
+        <button
+          className="primary"
+          disabled={!jobId}
+          onClick={() => void create()}
+        >
+          <Sparkles size={15} />
+          Build variant · free
+        </button>
+      </div>
+      {variant ? (
+        <>
+          <div className="notice">
+            {variant.note}{" "}
+            <span>{variant.remaining_lines} lines remaining</span>
+          </div>
+          <div className="tailor-grid">
+            <section>
+              <h3>Source bank</h3>
+              {bank.map((e) => (
+                <article className="experience-card" key={e.id}>
+                  <small>
+                    {e.kind} · {e.id.slice(0, 12)}
+                  </small>
+                  <h3>{e.title}</h3>
+                  <ul>
+                    {e.bullets.map((b, i) => (
+                      <li key={i}>
+                        {b}
+                        <button
+                          className="text-button"
+                          disabled={
+                            Boolean(variant.used) ||
+                            variant.lines.some(
+                              (x) =>
+                                x.bank_entry_id === e.id &&
+                                x.source_index === i,
+                            )
+                          }
+                          onClick={() =>
+                            void action("/variants/" + variant.id + "/layout", {
+                              selection: [
+                                ...variant.lines,
+                                { bank_entry_id: e.id, source_index: i },
+                              ],
+                            })
+                          }
+                        >
+                          Add source bullet
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </section>
+            <section>
+              <h3>
+                Variant #{variant.id} {variant.used ? "· locked" : ""}
+              </h3>
+              {variant.lines.map((line) => (
+                <article className="line-card" key={line.id}>
+                  <small>
+                    Source {line.bank_entry_id} · {line.status}
+                  </small>
+                  <p>{line.text}</p>
+                  <div className="button-row">
+                    <button
+                      className="text-button"
+                      disabled={Boolean(variant.used)}
+                      onClick={() =>
+                        void action("/variants/" + variant.id + "/layout", {
+                          selection: [
+                            line,
+                            ...variant.lines.filter((x) => x.id !== line.id),
+                          ],
+                        })
+                      }
+                    >
+                      Move to top
+                    </button>
+                    <button
+                      className="text-button"
+                      disabled={Boolean(variant.used)}
+                      onClick={() =>
+                        void action("/variants/" + variant.id + "/layout", {
+                          selection: variant.lines.filter(
+                            (x) => x.id !== line.id,
+                          ),
+                        })
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  {line.suggestion !== null ? (
+                    <>
+                      <del>{line.text}</del>
+                      <ins>{line.suggestion}</ins>
+                      <div className="button-row">
+                        <button
+                          className="secondary"
+                          onClick={() =>
+                            void action("/lines/" + line.id + "/decide", {
+                              accept: true,
+                            })
+                          }
+                        >
+                          <Check size={13} />
+                          Accept
+                        </button>
+                        <button
+                          className="secondary"
+                          onClick={() =>
+                            void action("/lines/" + line.id + "/decide", {
+                              accept: false,
+                            })
+                          }
+                        >
+                          <X size={13} />
+                          Reject
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const text = new FormData(e.currentTarget).get("text");
+                        void action("/lines/" + line.id + "/suggest", { text });
+                      }}
+                    >
+                      <textarea
+                        aria-label={"Rephrase source " + line.bank_entry_id}
+                        name="text"
+                        defaultValue={line.text}
+                        disabled={Boolean(variant.used)}
+                      />
+                      <button
+                        className="text-button"
+                        disabled={Boolean(variant.used)}
+                      >
+                        Preview edit
+                      </button>
+                      <button
+                        type="button"
+                        className="text-button"
+                        disabled={Boolean(variant.used)}
+                        onClick={() =>
+                          void action("/lines/" + line.id + "/ai-suggest")
+                        }
+                      >
+                        Suggest with AI · budget enforced
+                      </button>
+                    </form>
+                  )}
+                </article>
+              ))}
+            </section>
+          </div>
+          <div className="gap-grid">
+            <div>
+              <h3>In your bank, not surfaced</h3>
+              <p>
+                {variant.gap.not_surfaced.join(", ") ||
+                  "No unsurfaced requirements detected."}
+              </p>
+            </div>
+            <div>
+              <h3>Not covered by your bank</h3>
+              <p>
+                {variant.gap.not_in_bank.join(", ") ||
+                  "No uncovered requirements detected."}
+              </p>
+            </div>
+          </div>
+          <button
+            className="primary"
+            onClick={() => void action("/variants/" + variant.id + "/render")}
+            disabled={variant.overflow}
+          >
+            Render & verify PDF
+          </button>
+          {variant.ready ? (
+            <>
+              <p className="info-note">
+                Parse-back passed. Ready for application review.
+              </p>
+              <iframe
+                title="Resume PDF preview"
+                className="pdf-preview"
+                src={"/api/variants/" + variant.id + "/pdf"}
+              />
+              <a
+                className="text-button"
+                href={"/api/variants/" + variant.id + "/pdf"}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open verified PDF
+              </a>
+            </>
+          ) : (
+            <p className="muted">{variant.note}</p>
+          )}
+        </>
+      ) : (
+        <Empty
+          icon={<Sparkles size={28} />}
+          title="The right experience for this opportunity"
+          text="Choose a job and build a variant. Review every change before it becomes part of your resume."
+        />
+      )}
+    </>
+  );
 }

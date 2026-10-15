@@ -102,4 +102,35 @@ def index(db: sqlite3.Connection, encoder: Encoder | None = None) -> str:
                 (row["id"], encoder.model, row["content_hash"], json.dumps(vector)),
             )
     db.commit()
+    from datetime import datetime, timezone
+
+    from firstlook.match import train
+
+    row = db.execute("SELECT value FROM setting WHERE key='reranker'").fetchone()
+    trained = json.loads(row[0]).get("trained_at", "") if row else ""
+    if trained[:10] != datetime.now(timezone.utc).date().isoformat():
+        train(db)
     return encoder.note
+
+
+def clusters(db: sqlite3.Connection) -> list[dict]:
+    """Small local topic clusters; lexical seniority/title buckets when weights are absent."""
+    rows = db.execute(
+        "SELECT j.id,j.title,e.vector FROM job j LEFT JOIN job_embedding e ON e.job_id=j.id WHERE j.closed_detected_at IS NULL ORDER BY j.id"
+    ).fetchall()
+    vectors = [r for r in rows if r["vector"]]
+    groups: dict[str, list[int]] = {}
+    if len(vectors) >= 4:
+        from sklearn.cluster import KMeans
+
+        labels = KMeans(
+            n_clusters=min(8, max(2, int(math.sqrt(len(vectors))))), random_state=0, n_init=10
+        ).fit_predict([json.loads(r["vector"]) for r in vectors])
+        for row, label in zip(vectors, labels):
+            groups.setdefault(f"Topic {int(label) + 1}", []).append(row["id"])
+    else:
+        for row in rows:
+            title_tokens = tokens(row["title"])
+            key = " ".join(title_tokens[-2:]) or "Other"
+            groups.setdefault(key, []).append(row["id"])
+    return [{"name": key, "job_ids": value} for key, value in sorted(groups.items())]

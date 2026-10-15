@@ -38,7 +38,9 @@ def test_seed_loads_validates_no_seeded_row_is_marked_verified(db):
 
 def test_discovery_and_verification_are_explicit_and_mocked(db):
     transport = httpx.MockTransport(
-        lambda r: httpx.Response(200, text='<a href="https://jobs.lever.co/acme">Jobs</a>')
+        lambda r: httpx.Response(200, json=[])
+        if "api.lever.co" in str(r.url)
+        else httpx.Response(200, text='<a href="https://jobs.lever.co/acme">Jobs</a>')
     )
     with httpx.Client(transport=transport) as client:
         company = discover(db, "https://acme.example/careers", client)

@@ -1,6 +1,7 @@
 """Polite conditional requests shared by all ATS adapters."""
 
 import json
+import os
 import random
 import sqlite3
 import threading
@@ -33,9 +34,19 @@ class PoliteClient:
             timeout=30,
             transport=transport,
             follow_redirects=False,
-            headers={"User-Agent": "firstlook/0.1 (+local job research; contact: configure-me)"},
+            headers={
+                "User-Agent": "firstlook/0.1 (+local job research; contact: "
+                + os.environ.get("FIRSTLOOK_CONTACT", "configure-me")
+                + ")"
+            },
         )
         self.bytes = 0
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
 
     def close(self):
         self.client.close()

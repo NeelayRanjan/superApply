@@ -45,7 +45,11 @@ def queue(db: sqlite3.Connection, job_id: int, variant_id: int | None = None) ->
 
 
 def transition(
-    db: sqlite3.Connection, application_id: int, state: str, notes: str = "", contacts: str = ""
+    db: sqlite3.Connection,
+    application_id: int,
+    state: str,
+    notes: str | None = None,
+    contacts: str | None = None,
 ) -> dict:
     if state not in STATES:
         raise ValueError("Unknown pipeline state")
@@ -56,8 +60,8 @@ def transition(
         "UPDATE application SET state=?,notes=?,contacts=?,applied_at=CASE WHEN ?!=? THEN COALESCE(applied_at,?) ELSE applied_at END,response_at=CASE WHEN ? THEN COALESCE(response_at,?) ELSE response_at END WHERE id=?",
         (
             state,
-            notes or row["notes"],
-            contacts or row["contacts"],
+            notes if notes is not None else row["notes"],
+            contacts if contacts is not None else row["contacts"],
             state,
             "saved",
             now(),
@@ -68,11 +72,18 @@ def transition(
     )
     db.execute(
         "INSERT INTO application_event(application_id,state,note) VALUES(?,?,?)",
-        (application_id, state, notes),
+        (application_id, state, notes or ""),
     )
     if row["variant_id"] and state != "saved":
         db.execute("UPDATE resume_variant SET used=1 WHERE id=? AND used=0", (row["variant_id"],))
     db.commit()
+    if state in ("screen", "interview", "offer", "rejected", "ghosted"):
+        from firstlook.match import feedback
+
+        try:
+            feedback(db, row["job_id"], int(state in ("screen", "interview", "offer")))
+        except ValueError:
+            pass
     return dict(db.execute("SELECT * FROM application WHERE id=?", (application_id,)).fetchone())
 
 

@@ -95,6 +95,9 @@ def test_no_typst_binary_degrades_to_source_and_layout_budget_is_enforced(
     job = setup_bank(db)
     v = create(db, job)
     monkeypatch.setattr("shutil.which", lambda _: None)
+    import sys
+
+    monkeypatch.setitem(sys.modules, "typst", None)
     result = render(db, v["id"], tmp_path)
     assert not result["ready"] and "not installed" in result["note"]
     line = v["lines"][0]
@@ -116,3 +119,26 @@ def test_metrics_immutable_and_rejected_suggestion_keeps_original(db):
     )
     with pytest.raises(ValueError, match="immutable"):
         save(db, Entry(id="role-1", title="Engineer", metrics={"latency": "100%"}))
+
+
+def test_selection_order_template_and_export_readiness_invalidate(db, tmp_path):
+    from firstlook.tailor import layout
+
+    job = setup_bank(db)
+    variant = create(db, job, "compact")
+    original = variant["lines"]
+    result = layout(
+        db,
+        variant["id"],
+        [
+            {"bank_entry_id": item["bank_entry_id"], "source_index": item["source_index"]}
+            for item in reversed(original)
+        ],
+    )
+    assert [item["text"] for item in result["lines"]] == [
+        item["text"] for item in reversed(original)
+    ]
+    assert not result["ready"]
+    assert render(db, variant["id"], tmp_path, compile_pdf)["ready"]
+    with pytest.raises(ValueError, match="only once"):
+        layout(db, variant["id"], [original[0], original[0]])

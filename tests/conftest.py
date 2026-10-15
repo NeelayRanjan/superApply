@@ -22,3 +22,23 @@ def db():
     connection = connect(":memory:")
     yield connection
     connection.close()
+
+
+@pytest.fixture(autouse=True)
+def no_live_http_transports(monkeypatch):
+    import httpx
+
+    def blocked(*args, **kwargs):
+        raise AssertionError(
+            "Tests must install an explicit fixture HTTP transport; live HTTP is blocked"
+        )
+
+    monkeypatch.setattr(httpx.HTTPTransport, "handle_request", blocked)
+    monkeypatch.setattr(httpx.AsyncHTTPTransport, "handle_async_request", blocked)
+    for name in [
+        "FIRSTLOOK_API_KEY",
+        "FIRSTLOOK_LOCAL_URL",
+        "FIRSTLOOK_PROVIDER_URL",
+        "FIRSTLOOK_MODEL",
+    ]:
+        monkeypatch.delenv(name, raising=False)

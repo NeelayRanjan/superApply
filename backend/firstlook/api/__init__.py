@@ -52,6 +52,7 @@ def star(job_id: int) -> dict:
         row = db.execute("SELECT starred FROM job WHERE id=?", (job_id,)).fetchone()
         if not row:
             raise ValueError("Job not found")
+        feedback(db, job_id, int(row[0]))
         return {"starred": bool(row[0])}
 
 
@@ -119,7 +120,6 @@ def update_settings(data: dict) -> dict:
         "run_tokens",
         "minimum_sample",
         "reminder_days",
-        "provider",
         "theme",
     }
     if set(data) - allowed:
@@ -149,7 +149,7 @@ def demo() -> dict:
 
 
 @app.post("/api/crawl")
-def crawl() -> dict:
+def crawl(data: dict | None = None) -> dict:
     from firstlook.embed import index
     from firstlook.ingest import crawl as run
     from firstlook.ingest.http import PoliteClient
@@ -157,6 +157,12 @@ def crawl() -> dict:
 
     with connect() as db:
         require_targets(db)
+        if db.execute("SELECT count(*) FROM company").fetchone()[0] > 25 and not (data or {}).get(
+            "confirmed_bulk"
+        ):
+            raise ValueError(
+                "More than 25 boards: review the zero-token estimate and confirm this bulk crawl."
+            )
         client = PoliteClient(db)
         try:
             result = run(db, client)
@@ -205,3 +211,11 @@ app.include_router(apply_router)
 from firstlook.api.analytics import router as analytics_router  # noqa: E402
 
 app.include_router(analytics_router)
+
+
+@app.get("/api/clusters")
+def job_clusters():
+    from firstlook.embed import clusters
+
+    with connect() as db:
+        return clusters(db)

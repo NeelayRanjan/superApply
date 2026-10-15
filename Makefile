@@ -4,13 +4,15 @@ VENV = .venv/bin
 setup:
 	$(PYTHON) -m venv .venv
 	$(VENV)/pip install -r requirements.lock
-	$(VENV)/pip install --no-deps -e .
+	$(VENV)/pip install --no-deps --no-build-isolation -e .
 	cd frontend && npm ci
 check:
 	$(VENV)/ruff check backend tests scripts
 	$(VENV)/mypy backend
 	cd frontend && npm run typecheck && npm run lint && npm run build
 	$(VENV)/pytest
+	$(VENV)/coverage json -o .firstlook/coverage.json
+	$(VENV)/python scripts/check_coverage.py
 test:
 	$(VENV)/pytest
 run:
@@ -22,4 +24,5 @@ model:
 smoke:
 	$(VENV)/python scripts/smoke.py
 dist:
-	$(VENV)/python -m build
+	cd frontend && npm run build
+	$(VENV)/python -m build --no-isolation

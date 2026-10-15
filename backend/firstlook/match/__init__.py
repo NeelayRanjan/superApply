@@ -1,5 +1,6 @@
 import json
 import sqlite3
+from datetime import datetime, timezone
 from typing import Literal
 
 import numpy as np
@@ -126,8 +127,12 @@ def rank(
         if vector is not None and cached and cached["model"] == encoder.model:
             semantic = float(np.dot(vector, json.loads(cached["vector"])))
         features = [lex, overlap, title_overlap, semantic]
+        embedding_features = (
+            json.loads(cached["vector"]) if cached and cached["model"] == encoder.model else []
+        )
+        features += (embedding_features + [0.0] * 384)[:384]
         score = 0.3 * lex + 0.35 * overlap + 0.25 * title_overlap + 0.1 * semantic
-        if reranker and reranker["count"] >= 50:
+        if reranker and reranker["count"] >= 50 and len(reranker["coef"]) == len(features):
             learned = 1 / (
                 1
                 + np.exp(
@@ -204,6 +209,7 @@ def train(db: sqlite3.Connection) -> dict:
         [json.loads(r["features"]) for r in rows], [r["label"] for r in rows]
     )
     data = {
+        "trained_at": datetime.now(timezone.utc).isoformat(),
         "count": len(rows),
         "coef": model.coef_[0].tolist(),
         "intercept": float(model.intercept_[0]),

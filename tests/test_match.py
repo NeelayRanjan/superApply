@@ -85,4 +85,7 @@ def test_full_crawl_and_index_1000_company_fixture_corpus_issues_exactly_zero_ll
     assert crawl(db, c)["new"] == 1000
     index(db)
     assert len(rank(db, include_filtered=True)) == 1000
+    from firstlook.analytics import report
+
+    assert report(db)["overall"]["applications"] == 0
     assert db.execute("SELECT count(*) FROM llm_call").fetchone()[0] == 0

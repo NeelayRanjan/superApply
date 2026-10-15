@@ -45,17 +45,11 @@ def registry_list() -> None:
 
 @registry_app.command("discover")
 def registry_discover(url: str) -> None:
-    import httpx
-
     from firstlook.db import connect
+    from firstlook.ingest.http import PoliteClient
     from firstlook.registry import discover
 
-    with (
-        connect() as db,
-        httpx.Client(
-            timeout=30, headers={"User-Agent": "firstlook/0.1 contact: configure-me"}
-        ) as client,
-    ):
+    with connect() as db, PoliteClient(db, full=True) as client:
         typer.echo(discover(db, url, client).model_dump_json())
 
 
@@ -63,17 +57,11 @@ def registry_discover(url: str) -> None:
 def registry_verify(all: bool = typer.Option(False, "--all")) -> None:
     import json
 
-    import httpx
-
     from firstlook.db import connect
+    from firstlook.ingest.http import PoliteClient
     from firstlook.registry import verify
 
-    with (
-        connect() as db,
-        httpx.Client(
-            timeout=30, headers={"User-Agent": "firstlook/0.1 contact: configure-me"}
-        ) as client,
-    ):
+    with connect() as db, PoliteClient(db, full=True) as client:
         typer.echo(json.dumps(verify(db, client), indent=2))
 
 
@@ -88,7 +76,7 @@ def demo() -> None:
 
 
 @app.command("crawl")
-def crawl_command(full: bool = False) -> None:
+def crawl_command(full: bool = False, yes: bool = False) -> None:
     import json
 
     from firstlook.db import connect
@@ -99,6 +87,10 @@ def crawl_command(full: bool = False) -> None:
 
     with connect() as db:
         require_targets(db)
+        if db.execute("SELECT count(*) FROM company").fetchone()[0] > 25 and not yes:
+            raise typer.BadParameter(
+                "More than 25 companies: run firstlook estimate crawl, then pass --yes."
+            )
         client = PoliteClient(db, full=full)
         try:
             typer.echo(json.dumps(crawl(db, client), indent=2))

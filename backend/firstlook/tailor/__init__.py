@@ -189,7 +189,7 @@ def render(
 
     sections = [
         '#set page(paper: "us-letter", margin: 0.65in)',
-        '#set text(font: "Libertinus Serif", size: 10pt)',
+        f'#set text(font: "Libertinus Serif", size: {9 if variant["template"] == "compact" else 10}pt)',
         "#set par(leading: 0.65em)",
     ]
     required = []
@@ -215,14 +215,25 @@ def render(
     source.write_text("\n\n".join(sections))
     if compiler is None:
         binary = shutil.which("typst")
+        embedded = None
         if not binary:
+            try:
+                import typst
+
+                embedded = typst.compile
+            except ImportError:
+                pass
+        if not binary and embedded is None:
             note = "Typst is not installed. Source is saved; install Typst to export and verify the PDF."
             db.execute("UPDATE resume_variant SET ready=0,note=? WHERE id=?", (note, variant_id))
             db.commit()
             return dict(get(db, variant_id), source_path=str(source))
-        subprocess.run(
-            [binary, "compile", str(source), str(target)], check=True, capture_output=True
-        )
+        if embedded is not None:
+            embedded(str(source), output=str(target))
+        elif binary:
+            subprocess.run(
+                [binary, "compile", str(source), str(target)], check=True, capture_output=True
+            )
     else:
         compiler(source, target)
     ready = parse_back(target, required) and len(PdfReader(target).pages) == 1
@@ -246,3 +257,50 @@ def draft_answer(db: sqlite3.Connection, job_id: int, question: str) -> list[dic
     query = set(tokens(question))
     lines = sorted(variant["lines"], key=lambda x: -len(set(tokens(x["text"])) & query))[:5]
     return [{"text": item["text"], "bank_entry_id": item["bank_entry_id"]} for item in lines]
+
+
+def layout(db: sqlite3.Connection, variant_id: int, selection: list[dict]) -> dict:
+    variant = get(db, variant_id)
+    if variant["used"]:
+        raise ValueError("Used variants are immutable")
+    old = {(row["bank_entry_id"], row["source_index"]): row for row in variant["lines"]}
+    keys = [(row["bank_entry_id"], int(row["source_index"])) for row in selection]
+    if len(keys) != len(set(keys)):
+        raise ValueError("A source bullet may appear only once")
+    prepared = []
+    for entry_id, index in keys:
+        entry = variant["snapshot"].get(entry_id)
+        if not entry or index < 0 or index >= len(entry["bullets"]):
+            raise ValueError("Unknown source bullet")
+        original = expand(entry["bullets"][index], entry["metrics"])
+        row = old.get(
+            (entry_id, index),
+            {
+                "bank_entry_id": entry_id,
+                "source_index": index,
+                "text": original,
+                "original": original,
+                "suggestion": None,
+                "status": "original",
+            },
+        )
+        validate_line(row, variant["snapshot"])
+        prepared.append(row)
+    with db:
+        db.execute("DELETE FROM variant_line WHERE variant_id=?", (variant_id,))
+        for position, row in enumerate(prepared):
+            db.execute(
+                "INSERT INTO variant_line(variant_id,bank_entry_id,source_index,original,text,suggestion,status,position) VALUES(?,?,?,?,?,?,?,?)",
+                (
+                    variant_id,
+                    row["bank_entry_id"],
+                    row["source_index"],
+                    row["original"],
+                    row["text"],
+                    row["suggestion"],
+                    row["status"],
+                    position,
+                ),
+            )
+        db.execute("UPDATE resume_variant SET ready=0,pdf_path=NULL WHERE id=?", (variant_id,))
+    return get(db, variant_id)

@@ -121,9 +121,13 @@ def verify(db: sqlite3.Connection, client) -> list[dict]:
         try:
             response = client.get(allowed_url(board_url(company)))
             response.raise_for_status()
+            from firstlook.adapters import source
+
+            parser = source(company.platform, client)
+            parser.parse(response.text if company.platform == "jsonld" else response.json())
             verified = True
             message = "Endpoint reachable; inspect content on first crawl"
-        except (httpx.HTTPError, ValueError) as exc:
+        except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
             verified, message = False, str(exc)
         db.execute(
             "UPDATE company SET verified=?,notes=? WHERE id=?", (int(verified), message, company.id)

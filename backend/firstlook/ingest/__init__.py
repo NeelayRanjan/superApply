@@ -95,7 +95,20 @@ def ingest(
 
 def scheduled(db: sqlite3.Connection) -> list[dict]:
     rows = companies(db)
-    return sorted(rows, key=lambda c: ((c["last_crawled"] or ""), -c["hit_rate"], c["id"]))
+
+    def priority(company):
+        last = company["last_crawled"]
+        age = (
+            (datetime.now(timezone.utc) - datetime.fromisoformat(last)).total_seconds()
+            if last
+            else 1e12
+        )
+        return (
+            -age * (1 + company["hit_rate"]) / (1 + company["consecutive_failures"]),
+            company["id"],
+        )
+
+    return sorted(rows, key=priority)
 
 
 def crawl(db: sqlite3.Connection, client, selected: list[dict] | None = None) -> dict:

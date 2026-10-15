@@ -41,3 +41,13 @@ ignore_missing_imports = true
 testpaths = ["tests"]
 pythonpath = ["backend"]
 addopts = "--cov=firstlook --cov-report=term-missing"
+
+[tool.hatch.build.targets.wheel.force-include]
+"data" = "firstlook/resources/data"
+"frontend/dist" = "firstlook/resources/frontend/dist"
+
+[tool.hatch.build.targets.sdist]
+include = ["backend", "frontend/src", "frontend/index.html", "frontend/package.json", "frontend/package-lock.json", "frontend/tsconfig.json", "frontend/vite.config.ts", "frontend/eslint.config.js", "data", "fixtures", "tests", "scripts", "*.md", "Makefile", "pyproject.toml", "requirements.lock"]
+
+[tool.hatch.build.targets.sdist.force-include]
+"frontend/dist" = "frontend/dist"

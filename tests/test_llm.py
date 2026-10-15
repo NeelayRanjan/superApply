@@ -83,3 +83,32 @@ def test_local_provider_first_and_failed_requests_keep_reservations(db, monkeypa
     assert "reservation retained" in client.call("chat", 1, "test")["note"]
     assert db.execute("SELECT status FROM llm_call").fetchone()[0] == "failed_usage_unknown"
     assert "test-key" not in json.dumps([tuple(r) for r in db.execute("SELECT * FROM llm_call")])
+
+
+def test_agent_loop_uses_same_budget_run_and_cannot_submit(db, monkeypatch):
+    provider(monkeypatch)
+    populate(db, 1)
+    db.execute("INSERT INTO setting(key,value) VALUES('run_tokens','20000')")
+    db.execute("INSERT INTO setting(key,value) VALUES('daily_tokens','40000')")
+    db.commit()
+    messages = [
+        json.dumps({"tool": "explain_match", "arguments": {"id": 999}}),
+        json.dumps({"answer": "Your Python experience fits this role."}),
+    ]
+
+    def handle(request):
+        return httpx.Response(
+            200,
+            json={
+                "choices": [{"message": {"content": messages.pop(0)}}],
+                "usage": {"prompt_tokens": 100, "completion_tokens": 20},
+            },
+        )
+
+    result = chat(
+        db, "ask explain the role", {"view": "Jobs", "job_id": 1}, httpx.MockTransport(handle)
+    )
+    assert "Python" in result["message"]
+    assert db.execute("SELECT count(DISTINCT run_id) FROM llm_call").fetchone()[0] == 1
+    assert db.execute("SELECT count(*) FROM llm_call").fetchone()[0] == 2
+    assert db.execute("SELECT count(*) FROM application").fetchone()[0] == 0

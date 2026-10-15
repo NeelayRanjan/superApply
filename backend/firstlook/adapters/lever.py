@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from firstlook.adapters import Base, plain
 from firstlook.models import RawPosting
 
@@ -23,7 +25,11 @@ class Adapter(Base):
                     remote=j.get("workplaceType") == "remote",
                     department=c.get("department", c.get("team", "")),
                     employment_type=c.get("commitment", ""),
-                    posted_at=str(j["createdAt"]) if j.get("createdAt") else None,
+                    posted_at=datetime.fromtimestamp(
+                        j["createdAt"] / 1000, timezone.utc
+                    ).isoformat()
+                    if j.get("createdAt")
+                    else None,
                     description_html=body,
                     description=plain(body),
                     compensation=j.get("salaryRange", {}),
