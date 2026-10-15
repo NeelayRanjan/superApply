@@ -1,4 +1,4 @@
-Current task: M1.
+Current task: M2.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -7,9 +7,9 @@ Current task: M1.
 - [x] Offline tests, ruff, mypy, frontend typecheck/lint/build; commit
 
 ## M1 Registry
-- [ ] Full company schema, validated models and 300+ unverified seeds
-- [ ] ATS detection; discover/verify CLI; review registry
-- [ ] Fixture-only detection, seed validation tests; check and commit
+- [x] Full company schema, validated models and 300+ unverified seeds
+- [x] ATS detection; discover/verify CLI; review registry
+- [x] Fixture-only detection, seed validation tests; check and commit
 
 ## M2 Adapters and ingestion
 - [ ] Source protocol, Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, JSON-LD
