@@ -191,3 +191,51 @@ def render_command(variant_id: int) -> None:
 
     with connect() as db:
         typer.echo(render(db, variant_id))
+
+
+@app.command("apply")
+def apply_command(application_id: int, answers_file: str = "") -> None:
+    import json
+    from pathlib import Path
+
+    from firstlook.apply import Driver
+    from firstlook.db import connect
+
+    driver = Driver()
+    try:
+        with connect() as db:
+            preview = driver.preview(
+                db,
+                application_id,
+                json.loads(Path(answers_file).read_text()) if answers_file else {},
+            )
+            typer.echo(json.dumps(preview, indent=2))
+            if preview.get("can_confirm") and typer.confirm(
+                "Submit exactly the fields and attachment shown above?", default=False
+            ):
+                typer.echo(json.dumps(driver.confirm(db, preview["token"], True), indent=2))
+    finally:
+        driver.close()
+
+
+@app.command("api")
+def api_command(method: str, path: str, data: str = "{}") -> None:
+    """CLI parity for API operations. Application submission uses `firstlook apply`."""
+    import json
+
+    from fastapi.testclient import TestClient
+
+    from firstlook.api import app as api_app
+
+    if "/confirm" in path or "/preview" in path:
+        raise typer.BadParameter(
+            "Use firstlook apply for a persistent, explicitly confirmed browser session."
+        )
+    response = TestClient(api_app).request(
+        method.upper(),
+        "/api/" + path.lstrip("/"),
+        json=json.loads(data) if method.upper() != "GET" else None,
+    )
+    typer.echo(json.dumps(response.json(), indent=2))
+    if response.status_code >= 400:
+        raise typer.Exit(1)

@@ -93,3 +93,14 @@ def ai_suggestion(line_id: int):
             except ValueError as exc:
                 return dict(variant, note=f"Suggestion rejected by provenance/metrics gate: {exc}")
         return dict(variant, note=result["note"])
+
+
+@router.get("/api/variants")
+def variants():
+    with connect() as db:
+        return [
+            dict(r)
+            for r in db.execute(
+                "SELECT id,job_id,ready,used,created_at FROM resume_variant ORDER BY id DESC"
+            )
+        ]

@@ -1,4 +1,4 @@
-Current task: M8.
+Current task: M9.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -48,10 +48,10 @@ Current task: M8.
 - [x] Ledger/cache/budget/no-provider tests; check and commit
 
 ## M8 Tracker and assisted apply
-- [ ] States/events/notes/contacts/reminders and effort capture
-- [ ] Visible Playwright mapped form fill, field/file diff, required/essay validation
-- [ ] Explicit individual/batch confirmation, sensitive answers, receipts/screenshots
-- [ ] Saved Greenhouse/Lever/Ashby forms, browser and missing-browser tests; check and commit
+- [x] States/events/notes/contacts/reminders and effort capture
+- [x] Visible Playwright mapped form fill, field/file diff, required/essay validation
+- [x] Explicit individual/batch confirmation, sensitive answers, receipts/screenshots
+- [x] Saved Greenhouse/Lever/Ashby forms, browser and missing-browser tests; check and commit
 
 ## M9 Analytics
 - [ ] Segment/variant/lead-time rates and Wilson intervals; minimum sample gate

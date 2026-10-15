@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Check, FileText, Plus, Sparkles, X } from 'lucide-react';
 import { Empty, PageHeading } from './App';
 import { api, type Job } from './api';
+import Pipeline from './Pipeline';
 type Entry={id:string;kind:string;title:string;organisation:string;dates:string;bullets:string[];metrics:Record<string,string>;tags:string[];weight:number};
 type Line={id:number;bank_entry_id:string;text:string;original:string;suggestion:string|null;status:string};
 type Variant={id:number;lines:Line[];ready:number;used:number;remaining_lines:number;overflow:boolean;note:string;pdf_path:string|null;gap:{not_surfaced:string[];not_in_bank:string[]}};
-export function FeatureSlot({name,job,notify}:{name:string;job:Job|null;notify:(s:string)=>void}){if(name==='Bank')return <Bank notify={notify}/>;if(name==='Tailor')return <Tailor job={job} notify={notify}/>;return <><PageHeading title={name} subtitle={job?`${job.title} · ${job.company}`:'Your search, thoughtfully organized.'}/><Empty icon={<FileText size={28}/>} title={`Your ${name.toLowerCase()} starts here`} text="Your workspace is ready for the next step."/></>;}
+export function FeatureSlot({name,job,notify}:{name:string;job:Job|null;notify:(s:string)=>void}){if(name==='Pipeline')return <Pipeline job={job} notify={notify}/>;if(name==='Bank')return <Bank notify={notify}/>;if(name==='Tailor')return <Tailor job={job} notify={notify}/>;return <><PageHeading title={name} subtitle={job?`${job.title} · ${job.company}`:'Your search, thoughtfully organized.'}/><Empty icon={<FileText size={28}/>} title={`Your ${name.toLowerCase()} starts here`} text="Your workspace is ready for the next step."/></>;}
 function Bank({notify}:{notify:(s:string)=>void}){
  const blank:Entry={id:'',kind:'role',title:'',organisation:'',dates:'',bullets:[],metrics:{},tags:[],weight:1};const [rows,setRows]=useState<Entry[]>([]);const [entry,setEntry]=useState<Entry>(blank);const [metrics,setMetrics]=useState('{}');const [editing,setEditing]=useState(false);
  const load=()=>api<Entry[]>('/bank').then(setRows);useEffect(()=>{void load();},[]);

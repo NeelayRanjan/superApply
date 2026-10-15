@@ -197,3 +197,7 @@ app.include_router(tailor_router)
 from firstlook.api.chat import router as chat_router  # noqa: E402
 
 app.include_router(chat_router)
+
+from firstlook.api.apply import router as apply_router  # noqa: E402
+
+app.include_router(apply_router)
