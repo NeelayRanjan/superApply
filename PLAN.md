@@ -1,4 +1,4 @@
-Current task: M4.
+Current task: M5.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -24,10 +24,10 @@ Current task: M4.
 - [x] 60+ labelled golden fixtures and category accuracy tests; check and commit
 
 ## M4 Matching
-- [ ] Profile prerequisites, hard filters, overlap/cosine scores, bands and explanations
-- [ ] Optional ONNX encoder/vector cache, BM25 fallback, local dedupe/clustering
-- [ ] Feedback and logistic reranker with 50-label floor, scheduled retraining and exploration
-- [ ] Determinism, absent model, 1000-company/job zero-LLM tests; check and commit
+- [x] Profile prerequisites, hard filters, overlap/cosine scores, bands and explanations
+- [x] Optional ONNX encoder/vector cache, BM25 fallback, local dedupe/clustering
+- [x] Feedback and logistic reranker with 50-label floor, scheduled retraining and exploration
+- [x] Determinism, absent model, 1000-company/job zero-LLM tests; check and commit
 
 ## M5 UI shell
 - [ ] Three-region shell, jobs/detail, visible requirements/explanations/flags/gaps
