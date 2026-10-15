@@ -460,28 +460,28 @@ Binding, and stated in `RUNBOOK.md` for the user as well.
 The run ends only when every line is true. Check them yourself; do not report done
 on the strength of the milestone commits alone.
 
-- [ ] `SPEC.md`, `AGENTS.md`, `PLAN.md` (all boxes ticked), `ASSUMPTIONS.md`,
+- [x] `SPEC.md`, `AGENTS.md`, `PLAN.md` (all boxes ticked), `ASSUMPTIONS.md`,
       `RUNBOOK.md`, `COST.md`, `REVIEW_REGISTRY.md` exist and are current.
-- [ ] `make check` passes on a fresh clone in a temp directory.
-- [ ] The full test suite runs with no network access available.
-- [ ] `make smoke` ingests the fixture corpus, indexes it, matches it against a
+- [x] `make check` passes on a fresh clone in a temp directory.
+- [x] The full test suite runs with no network access available.
+- [x] `make smoke` ingests the fixture corpus, indexes it, matches it against a
       sample profile, renders a tailored resume, simulates an application against
       a form fixture, and prints the analytics tables, with zero LLM calls.
-- [ ] Zero-cost assertion: crawl, index, match, and analytics over the
+- [x] Zero-cost assertion: crawl, index, match, and analytics over the
       1,000-company fixture corpus issue no LLM calls, proven by an empty
       `llm_call` table in that test.
-- [ ] No code path submits an application without an explicit user confirmation,
+- [x] No code path submits an application without an explicit user confirmation,
       and no code path auto-answers EEO, veteran, disability, or work-authorization
       questions. Both are asserted by tests whose names say so.
-- [ ] A resume line without a `bank_entry_id` cannot be exported, and a rephrasing
+- [x] A resume line without a `bank_entry_id` cannot be exported, and a rephrasing
       that changes a locked metric is rejected. Both asserted by tests.
-- [ ] The app starts and is useful with no API key, no embedding model, no Typst
+- [x] The app starts and is useful with no API key, no embedding model, no Typst
       binary, and no Playwright browsers installed, each degradation tested.
-- [ ] No seeded registry entry is marked verified, and `REVIEW_REGISTRY.md` lists
+- [x] No seeded registry entry is marked verified, and `REVIEW_REGISTRY.md` lists
       every unverified company with the command that checks them.
-- [ ] `git status` is clean, the final commit is tagged `v0.1.0`, and the database,
+- [x] `git status` is clean, the final commit is tagged `v0.1.0`, and the database,
       exports, downloaded models, and any `.env` are gitignored.
-- [ ] `RUNBOOK.md` covers: install, choosing target titles and areas, seeding and
+- [x] `RUNBOOK.md` covers: install, choosing target titles and areas, seeding and
       verifying the registry, the first crawl, reading match explanations, filling
       the experience bank, tailoring, applying, logging outcomes, reading the
       analytics with their sample-size caveats, configuring a local or hosted

@@ -1,4 +1,4 @@
-Current task: M10 — fresh-clone verification and final release tag.
+Current task: Complete — v0.1.0.
 
 ## M0 Scaffold
 - [x] Package layout, pinned Python/frontend dependencies and lockfiles
@@ -62,5 +62,5 @@ Current task: M10 — fresh-clone verification and final release tag.
 - [x] Complete RUNBOOK/COST/README/assumptions/review registry
 - [x] Smoke: fixture ingest/index/match/PDF/form/analytics with zero LLM
 - [x] Coverage floors, network isolation, missing optional tools, confirmation/provenance audit
-- [ ] Distribution packaging and fresh-clone make check
-- [ ] All completion checklist assertions verified; clean git and v0.1.0 tag
+- [x] Distribution packaging and fresh-clone make check
+- [x] All completion checklist assertions verified; clean git and v0.1.0 tag

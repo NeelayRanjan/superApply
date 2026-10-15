@@ -123,3 +123,7 @@ Examples:
 `make smoke` uses 1,000 synthetic companies, real Typst rendering and a local saved form, simulates explicit confirmation and prints analytics with an empty LLM ledger. It requires the development Typst package and Chromium, never an API key. `make dist` produces an sdist and a wheel with the compiled frontend and registry data. The full test suite rejects live HTTP transports; browsers intercept all requests with local fixtures. A fresh clone needs `make setup` before `make check`.
 
 Only programmatic ATS endpoints and company pages permitted by robots.txt are supported. LinkedIn, Indeed, Glassdoor, prohibited scraping, telemetry, hosted deployment, accounts, autonomous submissions and inference of legal answers are excluded. Workday/iCIMS/Taleo, prose cover letters, email/calendar integrations and background job crawls remain phase two.
+
+## Release verification
+
+On 2026-10-14, a separate clone completed `make setup`, `make check`, `make smoke` and `make dist`. All 155 tests passed. Required package coverage: adapters 92.0%, ingestion 97.0%, extraction 100%, matching 95.0%, tailor 91.6%, analytics 100%. The 1,000-company smoke run produced a verified PDF and a confirmed saved-form receipt with zero LLM calls. The wheel was also loaded outside the source checkout to verify bundled data, static UI and health API. No live ATS data or live LLM provider was used in this validation.
